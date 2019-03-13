@@ -5,28 +5,28 @@
 ## 01 - Princesa
 
 - O que você fez
-    - Descrição
+    - Fiz o primeiro código, mas não consegui fazer o segundo que é matando para os dois lados.
 - Com quem e como você fez
-    - Descrição
+    - Fiz só
 - O que aprendeu e sabe fazer
-    - Descrição
+    - Modulo circular
 - O que tem dificuldade ainda
-    - Descrição
+    - Em configurar o Debug do vscode
 - Quanto tempo levou pra fazer a atividade
-    - Descrição
+    - 4
 
 ## 02 - Queimada
 
 - O que você fez
-    - Descrição
+    - Estudei como trabalhar com recurção e pratiquei em casa.
 - Com quem e como você fez
-    - Descrição
+    - Fiz sozinho com o exemplo feito em sala de aula.
 - O que aprendeu e sabe fazer
-    - Descrição
+    - Aprendi recurção, e com funcionar.
 - O que tem dificuldade ainda
-    - Descrição
+    - Elementos fora de um vetor
 - Quanto tempo levou pra fazer a atividade
-    - Descrição
+    - 3 dias
 
 ## 03 - Labirinto
 

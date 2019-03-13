@@ -77,9 +77,6 @@ int main(){
             escolhido = achar_vivo(pessoas, npaticipantes, escolhido, direcao);
             printf("Escolhido - 2: %d\n", escolhido);
         }
-
-
         mostar_vivos(pessoas,npaticipantes,escolhido);
-
     }
 }
