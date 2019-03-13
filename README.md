@@ -7,7 +7,7 @@
 - O que você fez
     - Fiz o código por inteiro com alguns exemplos que foi repassado na aula
 - Com quem e como você fez
-    - Fiz com a Alesandra ![](https://github.com/alessandraoli18/ed-2019-s1)
+    - Fiz com a Alesandra [Alesandra](https://github.com/alessandraoli18/ed-2019-s1)
 - O que aprendeu e sabe fazer
     - Modulo circular
 - O que tem dificuldade ainda
