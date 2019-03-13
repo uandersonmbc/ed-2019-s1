@@ -64,8 +64,6 @@ int main(){
 
     int size = npaticipantes-1;
 
-    printf("Escolhido: %d\n\n", escolhido);
-
     mostar_vivos(pessoas,npaticipantes,escolhido);
     
     for(int i = 0; i < size; i++){
@@ -75,7 +73,6 @@ int main(){
         pessoas[morre] = MORTO;
         for(int i = 0; i < andar; i++){
             escolhido = achar_vivo(pessoas, npaticipantes, escolhido, direcao);
-            printf("Escolhido - 2: %d\n", escolhido);
         }
         mostar_vivos(pessoas,npaticipantes,escolhido);
     }

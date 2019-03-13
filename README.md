@@ -5,7 +5,7 @@
 ## 01 - Princesa
 
 - O que você fez
-    - Fiz o primeiro código, mas não consegui fazer o segundo que é matando para os dois lados.
+    - Fiz o código por inteiro com alguns exemplos que foi repassado na aula
 - Com quem e como você fez
     - Fiz só
 - O que aprendeu e sabe fazer
