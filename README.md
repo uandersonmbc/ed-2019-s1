@@ -11,7 +11,7 @@
 - O que aprendeu e sabe fazer
     - Modulo circular
 - O que tem dificuldade ainda
-    - Em configurar o Debug do vscode
+    - Em passar a espada com o total de casas do elemento
 - Quanto tempo levou pra fazer a atividade
     - 4
 
