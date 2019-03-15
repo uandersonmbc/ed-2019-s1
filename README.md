@@ -13,7 +13,7 @@
 - O que tem dificuldade ainda
     - Em passar a espada com o total de casas do elemento
 - Quanto tempo levou pra fazer a atividade
-    - 4
+    - 4 dias
 
 ## 02 - Queimada
 
