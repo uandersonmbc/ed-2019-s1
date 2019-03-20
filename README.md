@@ -31,15 +31,15 @@
 ## 03 - Labirinto
 
 - O que você fez
-    - Descrição
+    - Comseguir desenrola a logica de pegar dois pontos e traçar o caminho entre eles no labirinto que foi feito em sala de aula.
 - Com quem e como você fez
-    - Descrição
+    - Fiz sozinho com ajuda do código feito em sala de aula.
 - O que aprendeu e sabe fazer
-    - Descrição
+    - macros.
 - O que tem dificuldade ainda
-    - Descrição
+    - Por enquanto nada.
 - Quanto tempo levou pra fazer a atividade
-    - Descrição
+    - 10 horas sem sair de frente do computador, estava debugando para saber o que estava fazendo de errado.
 
 ## 04 - Fractais
 
