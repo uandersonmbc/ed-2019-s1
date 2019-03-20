@@ -31,7 +31,7 @@
 ## 03 - Labirinto
 
 - O que você fez
-    - Conseguir desenrola a logica de pegar dois pontos e traçar o caminho entre eles no labirinto que foi feito em sala de aula.
+    - Conseguir desenrola a lógica de pegar dois pontos e traçar o caminho entre eles no labirinto que foi feito em sala de aula.
 - Com quem e como você fez
     - Fiz sozinho com ajuda do código feito em sala de aula.
 - O que aprendeu e sabe fazer
