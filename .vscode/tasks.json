@@ -1,0 +1,34 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "01 Princesa",
+            "type": "shell",
+            "group" : {
+                "kind" : "build",
+                "isDefault" : true
+            },
+            "command": "gcc -g main.c"
+        },
+        {
+            "label": "02 Queimada",
+            "type": "shell",
+            "group" : {
+                "kind" : "build",
+                "isDefault" : true
+            },
+            "command": "gcc -g main.c"
+        },
+        {
+            "label": "03 Labirinto",
+            "type": "shell",
+            "group" : {
+                "kind" : "build",
+                "isDefault" : true
+            },
+            "command": "gcc -g main.c"
+        }
+    ]
+}

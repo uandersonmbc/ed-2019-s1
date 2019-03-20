@@ -59,33 +59,33 @@ void furar(int nl, int nc, char mat[nl][nc], int l, int c){
 void show(int nl, int nc, char mat[nl][nc]){
     for(int l = 0; l < nl; l++){
         for(int c = 0; c < nc; c++){
-        //    if(mat[l][c] == '#')
-        //         printf("█");
-        //    else
+            if(mat[l][c] == '#')
+                printf("█");
+            else
                 printf("%c", mat[l][c]);
         }
         puts("");
     }
 }
-
+/* 
 bool procurar_saida(nl, nc, mat, mvis, l, c, lsaida, csaida){
-    // se nao for ' '
-    //     retorne
-    // se ja foi visitado
-    //     retorne
-    // marco como visitado
-    // poe '.'
-    // se sou saida
-    //     return true
-    // para cada vizinho
-    //     procurar_saida(viz)
-    // se alguem retornar verdadeiro
-    //     return true
-    // else
-    //     retiro '.'
-    //     return false
+    se nao for ' '
+        retorne
+    se ja foi visitado
+        retorne
+    marco como visitado
+    poe '.'
+    se sou saida
+        return true
+    para cada vizinho
+        procurar_saida(viz)
+    se alguem retornar verdadeiro
+        return true
+    else
+        retiro '.'
+        return false
 }
-
+ */
 int main(int argc, char * argv[]){
     srand(time(NULL));
     int nl = 10;
@@ -97,7 +97,7 @@ int main(int argc, char * argv[]){
     }
 
     char mat[nl][nc];
-    // mat  vis[nl][nc] false;
+//    mat  vis[nl][nc] false;
     char * p = &mat[0][0];
     for(int i = 0; i < nl * nc; i++)
         p[i] = '#';
