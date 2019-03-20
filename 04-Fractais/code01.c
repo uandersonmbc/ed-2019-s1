@@ -1,4 +1,4 @@
-#include "xpaint.h"
+#include "../xpaint/xpaint.h"
 
 void embua(int x, int y, float ang, int tamanho){
     if(tamanho < 10)

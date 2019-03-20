@@ -1,4 +1,4 @@
-#include "xpaint.h"
+#include "../xpaint/xpaint.h"
 
 void linha(int x, int y, float ang, int tamanho){
     int xf = x + tamanho * xm_cos(ang);
