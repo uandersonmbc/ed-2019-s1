@@ -29,6 +29,21 @@
                 "isDefault" : true
             },
             "command": "gcc -g main.c"
+        },
+        {
+            "taskName": "Teste",
+            "appliesTo": "makefile",
+            "type": "lauoch",
+            "contextType": "rebuild",
+            "command": "nmake",
+            "group" : {
+                "kind" : "build",
+                "isDefault" : true
+            },
+            "args": [ "rebuild" ],
+            "envVars": {
+                "VSCMD_START_DIR": "\"${workspaceRoot}\\04-Fractais\""
+            }
         }
     ]
 }
