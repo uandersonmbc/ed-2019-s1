@@ -1,30 +1,35 @@
 #include "../xpaint/xpaint.h"
 
-void tree(int x, int y, float ang, int tamanho){
+void tree(int x, int y, float ang, int tamanho, int esp){
     if(tamanho < 10)
         return;
     int xf = x + tamanho * xm_cos(ang);
     int yf = y - tamanho * xm_sin(ang);
-    xs_color((XColor){xm_rand(0, 255), xm_rand(0, 255), xm_rand(0, 255)});
-    // xd_thick_line(x, y, xf, yf, 3);
-    if(tamanho % 5 == 0 && tamanho < 50)
-        // make_xy(x + 5, y + 5);
-        // xd_thick_line(x + 5, y + 5, xf + 5, yf + 5, 3 + 5);
+    
+    xs_color((XColor){92,64,51});
+    xd_thick_line(x, y, xf, yf, esp);
+    
+    if((tamanho % 5) && esp > 3)esp-=10;
+    
+    if(tamanho <= 60){
+        xs_color((XColor){33,94,33});
+        xd_filled_circle(x, y, 7);
+    }
     x_step("tree");
 
-    tree(xf, yf, ang - 27, tamanho - xm_rand(5, 15));
-    tree(xf, yf, ang + 27, tamanho - xm_rand(5, 15));   
+    tree(xf, yf, ang - 20, tamanho -8, esp);
+    tree(xf, yf, ang + 20, tamanho -8, esp);     
 }
 
 int main(){
-    int largura = 600, altura = 600;
+    int largura = 1200, altura = 1200;
     x_open(largura, altura); 
     x_clear(BLACK);
     float ang = 90;
     int x = largura / 2;
     int y = altura - 10;
-    float tamanho = 90;
-    tree(x, y, ang, tamanho);
+    float tamanho = 100;
+    tree(x, y, ang, tamanho, 32);
     x_save("tree");
     x_close();
     return 0;
