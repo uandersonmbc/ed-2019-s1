@@ -44,15 +44,15 @@
 ## 04 - Fractais
 
 - O que você fez
-    - Conseguir fazer o fractais mais simples que tinha tentei fazer o os mais complexos mas não conseguir
+    - Conseguir fazer os fractais mais simples que tinha, tentei fazer o os mais complexos mas não conseguir.
 - Com quem e como você fez
-    - Fiz sozinho mesmo
+    - Fiz sozinho mesmo.
 - O que aprendeu e sabe fazer
-    - Apendi mais a trabalhar com recurção 
+    - Apendi mais a trabalhar com recurção.
 - O que tem dificuldade ainda
-    - Em fazer alguns fractais como o dos quadrados e do espiral de quadrados
+    - Em fazer alguns fractais como o dos quadrados e do espiral de quadrados.
 - Quanto tempo levou pra fazer a atividade
-    - 2 dias
+    - 2 dias.
 
 ## 05 - ...
 
