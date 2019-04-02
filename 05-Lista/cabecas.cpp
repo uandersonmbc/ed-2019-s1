@@ -7,39 +7,42 @@ struct No
     int value;
     No * next;
     No * prev;
-    No(int value = 0, No * next = nullptr, No * prev = nullptr){
-        this->value = value;
-        this->next = next;
-        this->prev = prev;
-    }
 };
 
 
 struct Cabeca
 {
-    No * head;
-    No * tail;
-    Cabeca(){
-        head = new No();
-        tail = new No();
-        head->next = tail;
-        tail->prev = head;
-    }
+    No * _initial;
+    No * _final;
 
     void show(){
         cout << "[ ";
-        No * no = head->next;
-        while(no != tail){
+        No * no = _initial->next;
+        while(no != _final){
             cout << no->value << " ";
             no = no->next;
         }
         cout << "]\n";
     }
 
-    void insert(No * ref, int value){
-        No * no = new No(value, ref, ref->prev);
-        ref->prev = no;
-        no->prev->next = no;
+    void insert(int value){
+        if(this->_initial == nullptr){
+            No * node = new No();
+            node->value = value;
+            node->prev = node;
+            node->next = node;
+            this->_initial = node;
+            this->_final = node;
+        }
+        else{
+            No * node = new No();
+            node->value = value;
+            node->prev = this->_final;
+            node->next = this->_initial;
+            this->_final->next = node;
+            this->_final = node;
+            this->_initial->prev = this->_final;
+        }
     }
 
     void remove(No * ref){
@@ -49,13 +52,13 @@ struct Cabeca
     }
 
     void push_back(int value){
-        insert(tail, value);
+        insert(_final, value);
     }
 
     No * search(int ini){
-        No * no = head->next;
+        No * no = _initial->next;
         int i = 1;
-        while(no != tail){
+        while(no != _final){
             if(i == ini)
                 return no;
             no = no->next;
