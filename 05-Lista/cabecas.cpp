@@ -7,86 +7,104 @@ struct No
     int value;
     No * next;
     No * prev;
-    No(int value = 0, No * next = nullptr, No * prev = nullptr){
+    No(int value){
         this->value = value;
-        this->next = next;
-        this->prev = prev;
+        this->next = this;
+        this->prev = this;
     }
 };
 
+void insert(No * ref, int value){
+    No * no = new No(value);
+    no->next = ref->next;
+    no->prev = ref;
+    ref->next = no;
+    no->next->prev = no;
+}
 
-struct Cabeca
-{
-    No * head;
-    No * tail;
-    Cabeca(){
-        head = new No();
-        tail = new No();
-        head->next = tail;
-        tail->prev = head;
-    }
+void remove(No * ref){
+    ref->prev->next = ref->next;
+    ref->next->prev = ref->prev;
+}
 
-    void show(){
-        cout << "[ ";
-        No * no = head->next;
-        while(no != tail){
-            cout << no->value << " ";
-            no = no->next;
-        }
-        cout << "]\n";
+void show(No * ref, No * espada = nullptr){
+    cout << "[";
+    if(ref != nullptr){
+        No * aux = ref;
+        do{
+            if((espada != nullptr) && (aux == espada)){
+                if(aux->value > 0){
+                    cout << " " << aux->value;
+                    printf(">");
+                }else{
+                    printf(" <");
+                    cout << aux->value;
+                }
+            }else{
+                cout << " " << aux->value;
+            }
+            aux = aux->next;
+        } while (aux != ref);
+        
     }
+    cout << " ]\n";
+}
 
-    void insert(No * ref, int value){
-        No * no = new No(value, ref, ref->prev);
-        ref->prev = no;
-        no->prev->next = no;
-    }
+No * search(No * ref,int ini){
+    No * aux = ref;
+    int i = 1;
+    do{
+        if(i == ini)
+            return aux;
+        aux = aux->next;
+        i++;
+    } while (aux != ref);
+    return aux;
+}
 
-    void remove(No * ref){
-        ref->prev->next = ref->next;
-        ref->next->prev = ref->prev;
-        delete ref;
-    }
-
-    void push_back(int value){
-        insert(tail, value);
-    }
-
-    No * search(int ini){
-        No * no = head->next;
-        int i = 1;
-        while(no != tail){
-            if(i == ini)
-                return no;
-            no = no->next;
-            i++;
-        }
-        return no;
-    }
-};
+void show_ord(No * ref){
+    No * menor = ref;
+    No * aux = ref;
+    do{
+        int om = menor->value > 0 ? menor->value : -menor->value;
+        int am = aux->value > 0 ? aux->value : -aux->value;
+        if(om < am)
+            menor = aux;
+        aux = aux->next;
+    }while(aux != ref);
+    show(menor->next, ref);
+}
 
 
 int main(){
     int tam = 0;
     int ini = 0;
     int fase = 1;
-    
-    Cabeca cabeca;
-    
-    cin >> tam;
-    cin >> ini;
-    cin >> fase;
+    No * lista = nullptr;
+    cin >> tam >> ini >> fase;
 
-    for(int i = 0; i < tam; i++){
-        cabeca.push_back((i + 1) * fase);
+    for(int i = 2; i <= tam; i++){
+        if (lista == nullptr) {
+            lista = new No((1 * fase));
+            fase *= -1;
+        }
+        
+        insert(lista->prev,(i * fase));
         fase *= -1;
     }
 
-    No * found = cabeca.search(ini);
+    No * found = search(lista,ini);
+    show(lista, found);
+    
     for(int i = 0; i < tam-1; i++){
         int direcao = found->value > 0 ? 1 : -1;
         int andar = found->value > 0 ? found->value : -found->value;
-        cabeca.remove(found->next);
+
+        if(direcao == 1)
+            remove(found->next);
+        else
+            remove(found->prev);
+        
         for(int j = 0; j < andar; j++){
             if(direcao == 1)
                 found = found->next;
@@ -94,8 +112,7 @@ int main(){
                 found = found->prev;
         }
 
-        cabeca.show();
+        show_ord(found);
     }
     return 0;
 }
-// g++ .\cabecas.cpp -o cabecas
