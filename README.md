@@ -54,15 +54,15 @@
 - Quanto tempo levou pra fazer a atividade
     - 2 dias.
 
-## 05 - ...
+## 05 - Lista Circula Duplamente Encadeada
 
 - O que você fez
-    - Teste de alteração
+    - Fiz a lógica da princesa 01 com lista circula duplamente encadeada, junto com os execicios feitos em sala de aula e assistindo algumas vídeos aulas para entender melhor como funciona a lista.
 - Com quem e como você fez
-    - Descrição
+    - Fiz só com ajunda dos algoritmos feito em sala de aula.
 - O que aprendeu e sabe fazer
-    - Descrição
+    - Lista encadeada, lista circla e duplamente encadeada.
 - O que tem dificuldade ainda
-    - Descrição
+    - Nos ponteiros de next e prov, as vezes fico perdido no que fazer.
 - Quanto tempo levou pra fazer a atividade
-    - Descrição
+    - 4 horas.
