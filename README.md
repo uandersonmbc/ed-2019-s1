@@ -66,3 +66,16 @@
     - Nos ponteiros de next e prov, as vezes fico perdido no que fazer.
 - Quanto tempo levou pra fazer a atividade
     - 4 horas.
+
+## 06 - Ordenação
+
+- O que você fez
+    - Fiz três algoritmos de ordenação, o insertion, selectoin e o bubble sort.
+- Com quem e como você fez
+    - Fiz sozinho.
+- O que aprendeu e sabe fazer
+    - aprendi a usar a biblioteca gráfica e gerar os videos com as imagens.
+- O que tem dificuldade ainda
+    - Acho que não tive dificuldade.
+- Quanto tempo levou pra fazer a atividade
+    - 3 horas.
