@@ -3,6 +3,7 @@
 #include <queue>
 #include <iostream>
 #include <sstream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -23,24 +24,90 @@ struct Bank{
     queue<Client*> fila_saida;
 };
 
-/**
- * [][][]
- * in :{ Ai:4:6 Bo:2:3 Ce:3:8 Di:3:5 Em:3:2 }
- * out:{ }
-*/
 void show(Bank bank){
-    cout << "in : { ";
-    for (int i = 0; i < bank.caixas.size(); i++){
-        cout << bank.caixas[i]->id << ":" << bank.caixas[i]->docs << ":" << bank.caixas[i]->pac << " ";
+    for (int i = 0; i < (int) bank.caixas.size(); i++){
+        cout << "[";
+        if(bank.caixas[i] != nullptr){
+            cout << bank.caixas[i]->id << ":" << bank.caixas[i]->docs << ":" << bank.caixas[i]->pac << " ";
+        }
+        cout << "]";
+    }
+    if(!bank.caixas.size()){
+        cout << "Caixas Fechados";
+    }
+    cout << endl;
+
+    cout << "in  : { ";
+    list<Client*>::iterator it;
+    for (it = bank.fila_entrada.begin(); it != bank.fila_entrada.end(); ++it){
+        cout << (*it)->id << ":" << (*it)->docs << ":" << (*it)->pac << " ";
     }
     cout << "}" << endl;
+
+    cout << "out : { ";
+    while (!bank.fila_saida.empty()){
+        cout << bank.fila_saida.front()->id << ":" << bank.fila_saida.front()->docs << ":" << bank.fila_saida.front()->pac << " ";
+        bank.fila_saida.pop();
+    }
+
+    cout << "}" << endl;
+}
+
+void open_cashier(Bank * bank, int size, Client * empty){
+    int difference = (*bank).caixas.size() - size;
+    if(difference > 0){
+        while(difference > 0){
+            (*bank).caixas.pop_back();
+            difference--;
+        }
+    }else{
+        while(difference < 0){
+            (*bank).caixas.push_back(empty);
+            difference++;
+        }
+    }
+}
+
+void tic(Bank * bank, Client * empty, int *received, int *lost){
+    while (!(*bank).fila_saida.empty()){
+        (*bank).fila_saida.pop();
+    }
+    for (int i = 0; i < (int) (*bank).caixas.size(); i++){
+        if((*bank).caixas[i] != nullptr){
+            if((*bank).caixas[i]->docs > 0){
+                (*bank).caixas[i]->docs--;
+                *received += 1;
+            }else{
+                (*bank).fila_saida.push((*bank).caixas[i]);
+                (*bank).caixas[i] = empty;
+            }
+        }else{
+            if((*bank).fila_entrada.size()){
+                (*bank).caixas[i] = (*bank).fila_entrada.front();
+                (*bank).fila_entrada.pop_front();
+            }
+        }
+    }
+
+    for(auto it = (*bank).fila_entrada.begin(); it != (*bank).fila_entrada.end();){
+        if((*it)->pac > 0){
+            (*it)->pac--;
+            ++it;
+        }else{
+            (*bank).fila_saida.push((*it));
+            *lost += (*it)->docs;
+            it = (*bank).fila_entrada.erase(it);
+        }
+    }
 }
 
 int main(){
     int cashier = 0;
     Bank bank;
     Client * client;
-
+    Client * empty = nullptr;
+    int received = 0;
+    int lost = 0;
     while(true){
         string line, cmd;
         getline(cin, line);
@@ -49,13 +116,16 @@ int main(){
         if(cmd == "end"){
             break;
         }else if(cmd == "finalizar"){
-
+            cout << "docs recebidos: " << received << endl;
+            cout << "docs perdidos: " << lost << endl;
         }else if(cmd == "init"){
             ui >> cashier;
+            open_cashier(&bank, cashier, empty);
         }else if(cmd == "show"){
             show(bank);
+            cout << endl;
         }else if(cmd == "tic"){
-            
+            tic(&bank, empty, &received, &lost);
         }else if(cmd == "in"){
             string nome;
             int docs, pac;
@@ -63,7 +133,9 @@ int main(){
             ui >> docs;
             ui >> pac;
             client = new Client(nome, docs, pac);
-            bank.caixas.push_back(client);
+            bank.fila_entrada.push_back(client);
+        }else if(cmd == "clear"){
+            system("reset");
         }else{
             cout << "fail: comando invalido\n";
         }
