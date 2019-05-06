@@ -4,7 +4,7 @@
 #include <time.h>
 
 const char PAREDE = 219;// █
-const char CAMINHO = 248;// °
+const char CAMINHO = '.';// .
 const char INICIO = 79;// O
 const char CHEGADA = 88;// X
 
