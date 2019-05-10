@@ -108,6 +108,8 @@ int main(){
     Client * empty = nullptr;
     int received = 0;
     int lost = 0;
+    int tic_total = 0;
+    int value_cashier = 100;
     while(true){
         string line, cmd;
         getline(cin, line);
@@ -116,8 +118,10 @@ int main(){
         if(cmd == "end"){
             break;
         }else if(cmd == "finalizar"){
-            cout << "docs recebidos: " << received << endl;
-            cout << "docs perdidos: " << lost << endl;
+            cout << "Total de turnos: " << tic_total << endl;
+            cout << "Docs recebidos: " << received << endl;
+            cout << "Docs perdidos: " << lost << endl;
+            cout << "Melhor quantidade de caixa: " << (received - (cashier * value_cashier)) << endl;
         }else if(cmd == "init"){
             ui >> cashier;
             open_cashier(&bank, cashier, empty);
@@ -126,6 +130,7 @@ int main(){
             cout << endl;
         }else if(cmd == "tic"){
             tic(&bank, empty, &received, &lost);
+            tic_total++;
         }else if(cmd == "in"){
             string nome;
             int docs, pac;
@@ -137,7 +142,7 @@ int main(){
         }else if(cmd == "clear"){
             system("reset");
         }else{
-            cout << "fail: comando invalido\n";
+            cout << "EX: show, in, end, init, tic, clear e finalizar" << endl;
         }
     }
 }

@@ -1,4 +1,4 @@
-init 3
+init 2
 show
 in Ai 4 6
 in Bo 2 3
