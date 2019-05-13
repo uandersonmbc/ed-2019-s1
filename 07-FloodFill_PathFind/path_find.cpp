@@ -13,9 +13,11 @@ struct Pos{
         this->c = _c;
     }
 };
+
 vector<Pos> get_neibs(int l, int c){
     return vector<Pos> {Pos(l, c - 1), Pos(l - 1, c), Pos(l, c + 1), Pos(l + 1, c)};
 }
+ 
 bool has_value(vector<string> &mat, int l, int c, char value){
     if(l < 0 || l >= (int) mat.size())
         return false;
@@ -23,16 +25,19 @@ bool has_value(vector<string> &mat, int l, int c, char value){
         return false;
     return mat[l][c] == value;
 }
+
 void pintar(vector<string> &mat,int l, int c, char cor_base, char cor_final){
     if(!has_value(mat, l, c, cor_base))
         return;
     mat[l][c] = cor_final;
     xmat_draw(mat);
-    x_step("mat");
+    x_step("path");
     for(auto viz : get_neibs(l, c)){
         pintar(mat, viz.l, viz.c, cor_base, cor_final);
     }
 }
+
+
 void mostrar(vector<vector<int>>& mat_int, vector<string>& mat, queue<Pos> fila){
     xmat_draw(mat);
     while(!fila.empty()){
@@ -44,10 +49,11 @@ void mostrar(vector<vector<int>>& mat_int, vector<string>& mat, queue<Pos> fila)
             xmat_put_number(l, c, BLACK, mat_int[l][c]);
         }
     }
-    x_step("mat");
+    x_step("path"); 
 
 }
-void floodfill(vector<vector<int>>& mat_int, vector<string>& mat, int l, int c, char cor_base, char cor_final, int lfinal, int cfinal){
+
+void floodfill(vector<vector<int>>& mat_int, vector<string>& mat, int l, int c, char cor_base, char cor_final){
     queue<Pos> fila;
     fila.push(Pos(l, c));
     mat[l][c] = cor_final;
@@ -64,103 +70,27 @@ void floodfill(vector<vector<int>>& mat_int, vector<string>& mat, int l, int c, 
     }
 }
 
-void pathfind(vector<vector<int>>& mat_int, vector<string>& mat, int l, int c, char cor_base, char cor_final, int lfinal, int cfinal){
-    queue<Pos> fila;
-    queue<Pos> fila2;
-    vector<string> mat_reserva = mat;
-    bool encontrou = false;
-    int i = 0;
-    fila.push(Pos(l, c));
-    mat[l][c] = cor_final;
-    while(!fila.empty()){
-        Pos ref = fila.front();
-        fila.pop();
-        i = mat_int[ref.l][ref.c] + 1;
-        for(auto viz : get_neibs(ref.l, ref.c)){
-            if(has_value(mat, viz.l, viz.c, cor_base)){
-                mat[viz.l][viz.c] = cor_final;
-                mat_int[viz.l][viz.c] = i;
-                fila.push(viz);
-                mostrar(mat_int, mat, fila);
-            }
-            if(has_value(mat, viz.l, viz.c, cor_final) && viz.l == lfinal && viz.c == cfinal){
-                encontrou = true;
-                break;
-            }
-
-        }
-
-        if(encontrou)
-          break;
-
-    }
-
-
-    if(encontrou){
-        fila2.push(Pos(lfinal, cfinal));
-        bool terminou = false;
-
-        while(!terminou) {
-            Pos ref = fila2.back();
-            int aux = mat_int [ref.l][ref.c];
-            for(auto viz : get_neibs(ref.l, ref.c)) {
-                if(has_value(mat, viz.l, viz.c, cor_final) && mat_int[viz.l][viz.c] == 0) {
-                    fila2.push(Pos(viz.l, viz.c));
-                    terminou = true;
-                    break;
-                }
-                if(has_value(mat, viz.l, viz.c, cor_final) && mat_int[viz.l][viz.c] == aux - 1) {
-                    fila2.push(Pos(viz.l, viz.c));
-                    break;
-                }
-            }
-        }
-        mat = mat_reserva;
-
-        while(!fila2.empty()){
-            Pos ref = fila2.front();
-            mat[ref.l][ref.c] = cor_final;
-            fila2.pop();
-        }
-
-    }
-
-    if(!encontrou){
-        mat = mat_reserva;
-        printf("nao possue caminho valido");
-    }
-
-
-
-
-
-}
 
 int main(){
     int nl = 20, nc = 20;
     xmat_init(nl, nc);
     vector<string> mat(nl, string(nc, 'g'));
-    vector<vector<int>> mat_int(nl, vector<int>(nc, 0));
+    vector<vector<int>> mat_int(nl, vector<int>(nc, -1));
     for(int l = 0; l < (int) mat.size(); l++){
         for(int c = 0; c < (int) mat[0].size(); c++){
             if(xm_rand(0, 100) < 30)
-                mat[l][c] = 'r';
+                mat[l][c] = 'r'; 
         }
     }
     xmat_draw(mat);
-    x_save("mat");
-    int linicio = 0, cinicio = 0;
-    int lfim = 0, cfim = 0;
+    x_save("path");
+    int l = 0, c = 0;
     puts("Digite o ponto de inicio l e c");
-    scanf("%d %d", &linicio, &cinicio);
-    puts("Digite o ponto do fim l e c");
-    scanf("%d %d", &lfim, &cfim);
+    scanf("%d %d", &l, &c);
     getchar();//remove \n after numbers
 
-    //pintar(mat, l, c, mat[l][c], 'b');
-    //floodfill(mat_int, mat, linicio, cinicio, mat[linicio][cinicio], 'b', lfim, cfim);
-    pathfind(mat_int, mat, linicio, cinicio, mat[linicio][cinicio], 'b', lfim, cfim);
+    floodfill(mat_int, mat, l, c, mat[l][c], 'b');
     xmat_draw(mat);
-    x_save("mat");
+    x_save("path");
     x_close();
 }

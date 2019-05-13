@@ -3,6 +3,9 @@
     "files.associations": {
         "xpaint.h": "c",
         "iostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "ostream": "cpp"
     }
 }
