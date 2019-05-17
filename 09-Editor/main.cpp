@@ -42,34 +42,84 @@ void processKey(list<State>& states, list<State>::iterator& itc, sf::Event& even
     auto tecla = sf2char(event);
 
     if(event.key.control && (event.key.code == sf::Keyboard::Z)){ //control z
-        //TODO
+        if(itc != states.begin())
+            itc--;
     }
     else if(event.key.control && (event.key.code == sf::Keyboard::R)){ //control r
-        //TODO
+        if(itc != prev(states.end()))
+            itc++;
     }
     else if(tecla != '\0'){ //alguma tecla printável
-        //TODO
+        auto prox = itc;
+        states.erase(++prox, states.end());
+        states.push_back(*itc);
+        itc = --states.end();
+
         itc->text.insert(itc->cursor, tecla);
     }
     else if(event.key.code == sf::Keyboard::BackSpace){
-        //TODO
+        if(itc->cursor != itc->text.begin())
+            itc->cursor = itc->text.erase(--itc->cursor);
     }
     else if(event.key.code == sf::Keyboard::Delete){
-        //TODO
+        if(itc->cursor != itc->text.end())
+            itc->cursor = itc->text.erase(itc->cursor);
     }
     else if(event.key.code == sf::Keyboard::Left){
-        //TODO
-        itc->cursor--;
+        if(itc->cursor != itc->text.begin())
+            itc->cursor--;
     }
     else if(event.key.code == sf::Keyboard::Right){
-        //TODO
-        itc->cursor++;
+        if(itc->cursor != itc->text.end())
+            itc->cursor++;
     }
     else if(event.key.code == sf::Keyboard::Up){
-        //TODO
+        int desloc = 0;
+        auto it = itc->cursor;
+        //volta pro comeco da linha contando quantos elementos são
+        while(((*prev(it)) != '\n') && (prev(it) != itc->text.end())){
+            desloc++;
+            it--;
+        }
+        //se o comeco da linha é end, nao existe linha anterior, entao saia
+        if(prev(it) != itc->text.end()){
+            //como existe linha anterior, va ate o primeiro elemento dela
+            do{
+                it--;
+            }while(((*prev(it)) != '\n') && (prev(it) != itc->text.end()));
+            //tente andar desloc elementos, mas pare se encontrar o final
+            for(int i = 0; i < desloc; i++){
+                if(((*it) == '\n') || (it == itc->text.end()))
+                    break;
+                else
+                    it++;
+            }
+            itc->cursor = it;
+        }
+
     }
     else if(event.key.code == sf::Keyboard::Down){
-        //TODO
+        int desloc = 0;
+        auto it = itc->cursor;
+        //volta pro comeco da linha contando quantos elementos são
+        while(((*prev(it)) != '\n') && (prev(it) != itc->text.end())){
+            desloc++;
+            it--;
+        }
+        cout << desloc << endl;
+        do{
+            it++;
+        }while(((*prev(it)) != '\n') && (prev(it) != itc->text.end()));
+
+        if(prev(it) != itc->text.end()){
+            for(int i = 0; i < desloc; i++){
+                if(((*it) == '\n') || (it == itc->text.end()))
+                    break;
+                else
+                    it++;
+            }
+            itc->cursor = it;
+        }
     }
 }
 
@@ -82,7 +132,7 @@ int main()
     list<State> states(1); //inicia a lista com 1 State
     list<State>::iterator itc = states.begin(); //it currrent aponta para o estado atual
 
-    string texto_inicial = "Digite ou clique\nesquerda ou direita.";
+    string texto_inicial = "Digite\nuse espaco\ndirecionais\nEnter.";
     for(char c : texto_inicial)
         itc->text.push_back(c);
 /*
