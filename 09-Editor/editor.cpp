@@ -47,17 +47,19 @@ void processKey(list<State>& states, list<State>::iterator& itc, sf::Event& even
             itc--;
     }
     else if(event.key.control && (event.key.code == sf::Keyboard::R)){ //control r
-        //TODO
+
     }
     else if(tecla != '\0'){ //alguma tecla printável
         //TODO
         itc->text.insert(itc->cursor, tecla);
     }
     else if(event.key.code == sf::Keyboard::BackSpace){
-        //TODO
+        if(itc->cursor != itc->text.begin())
+            itc->cursor = itc->text.erase(--itc->cursor);
     }
     else if(event.key.code == sf::Keyboard::Delete){
-        //TODO
+        if(itc->cursor != itc->text.end())
+            itc->cursor = itc->text.erase(itc->cursor);
     }
     else if(event.key.code == sf::Keyboard::Left){
         //TODO
@@ -87,13 +89,8 @@ int main()
     string texto_inicial = "Digite ou clique\nesquerda ou direita.";
     for(char c : texto_inicial)
         itc->text.push_back(c);
-/*
-    itc->text.push_back('a');
-    itc->text.push_back('m');
-    itc->text.push_back('o');
-    itc->text.push_back('r');
-*/
-    sf::RenderWindow janela(sf::VideoMode(800, 600), "Janela");
+
+    sf::RenderWindow janela(sf::VideoMode(1000, 600), "Editor de Texto Em CPP");
 
     while(janela.isOpen()){
 
