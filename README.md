@@ -96,6 +96,19 @@
 ## 08 - Banco
 
 - O que você fez
+    - Fiz o algoritmo do banco.
+- Com quem e como você fez
+    - Fiz sozinho.
+- O que aprendeu e sabe fazer
+    - Melhorei minhas habilidades com ponteiros.
+- O que tem dificuldade ainda
+    - Acho que nada por enquanto.
+- Quanto tempo levou pra fazer a atividade
+    - 4 horas.
+
+## 09 - Editor
+
+- O que você fez
     - ...
 - Com quem e como você fez
     - ...
