@@ -62,11 +62,9 @@ void processKey(list<State>& states, list<State>::iterator& itc, sf::Event& even
             itc->cursor = itc->text.erase(itc->cursor);
     }
     else if(event.key.code == sf::Keyboard::Left){
-        //TODO
         itc->cursor--;
     }
     else if(event.key.code == sf::Keyboard::Right){
-        //TODO
         itc->cursor++;
     }
     else if(event.key.code == sf::Keyboard::Up){
