@@ -12,10 +12,10 @@ void show(char mat[3][3]){
     }
 }
 
-bool check_move(char jogada, char * mat, bool jogador){
+bool check_move(char move_game, char * mat, bool player){
     for(int i = 0; i < 9; i++){
-        if(mat[i] == jogada){
-            if(jogador)
+        if(mat[i] == move_game){
+            if(player)
                 mat[i] = 'X';
             else
                 mat[i] = 'O';
@@ -57,35 +57,38 @@ int check_out_winner(char mat[3][3]){
 int main(){
     char mat[3][3];
     char *p = &mat[0][0];
-    string jog1, jog2;
-    char jogada;
-    bool jogador = true;
+    string play1, play2;
+    char move_game;
+    bool player = true;
     for(int i = 0; i < 9; i++){
         p[i] = i+'0';
     }
     show(mat);
-    cout << "Jogador 1: ";
-    getline(cin, jog1);
-    cout << "Jogador 2: ";
-    getline(cin, jog2);
+    cout << "player 1: ";
+    getline(cin, play1);
+    cout << "player 2: ";
+    getline(cin, play2);
     cout << "Començando o jogo" << endl;
     while(true){
-        if(jogador)
-            cout << jog1 << ": ";
+        if(player)
+            cout << play1 << ": ";
         else
-            cout << jog2 << ": ";
-        cin >> jogada;
-        int move = check_move(jogada, &mat[0][0], jogador);
+            cout << play2 << ": ";
+        cin >> move_game;
+        int move = check_move(move_game, &mat[0][0], player);
         if(move){
-            if(jogador)
-                jogador = false;
+            if(player)
+                player = false;
             else
-                jogador = true;
+                player = true;
         }
         show(mat);
         int winner = check_out_winner(mat);
         if(winner){
-           cout << "Vencedor: " << winner << endl;
+            if(winner)
+                cout << "Vencedor: " << play1 << endl;
+            else
+                cout << "Vencedor: " << play2 << endl;
            break; 
         }
     }
