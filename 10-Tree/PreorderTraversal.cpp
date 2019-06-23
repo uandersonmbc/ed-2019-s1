@@ -63,6 +63,14 @@ class Node {
 }; //End of Solution
 
 int main(){
+    // 1 2 5 3 6 4
+    Node * root = new Node(1);
     Solution s;
+    s.insert(root, 2);
+    s.insert(root, 5);
+    s.insert(root, 3);
+    s.insert(root, 6);
+    s.insert(root, 4);
+    s.preOrder(root);   
     return 0;
 }
