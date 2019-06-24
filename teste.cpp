@@ -1,95 +1,125 @@
-#include <iostream>
-#include <cstdlib>
-#include <sstream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-void show(char mat[3][3]){
-    for(int l = 0; l < 3; l++){
-        cout << " " << mat[l][0] << " | " << mat[l][1] << " | " << mat[l][2] << endl;
-        if(l != 2)
-            cout << string(11, '-') << endl;
+pair<bool,int> bsearchVetor(vector<int> &vet, int inicio, int fim, int value){
+    if(inicio < fim){
+        int meio = (fim+inicio)/2;
+        if(vet[meio] == value){
+            return make_pair(true,meio);
+        }
+        if(vet[meio] > value)
+            bsearchVetor(vet,inicio,meio,value);
+        else
+            bsearchVetor(vet,meio+1,fim,value);
+    }
+    else{
+        return make_pair(false,fim);
     }
 }
 
-bool check_move(char move_game, char * mat, bool player){
-    for(int i = 0; i < 9; i++){
-        if(mat[i] == move_game){
-            if(player)
-                mat[i] = 'X';
-            else
-                mat[i] = 'O';
-            return true;
-        }
+pair<bool,list<int>::iterator> bsearchList(list<int> &lista, int value){
+    auto it = lista.begin();
+    while(it != lista.end()){
+        if(*it == value)
+            return make_pair(true,it);
+        else if(*it > value)
+            return make_pair(false,it);
+        it++;
     }
-    return false;
+    return make_pair(false,it);
 }
 
-int winner(char value){
-    if(value == 'X')
-        return 1;
-    return 2;
+void showVetor(vector<int> &vet){
+    cout << "[ ";
+    for(int i = 0; i < vet.size(); i++)
+        cout << vet[i] << " ";
+    cout << "]\n";
 }
 
-int check_out_winner(char mat[3][3]){
-    char *p = &mat[0][0];
-    if(p[0] == p[4] && p[4] == p[8]){
-        return winner(p[0]);
-    }
+void showConjunto(set<int> &conjunto){
+    cout << "[ ";
+    for(auto it = conjunto.begin(); it != conjunto.end();it++)
+        cout << *it << " ";
+    cout << "]\n";
+}
 
-    if(p[2] == p[4] && p[4] == p[6]){
-        return winner(p[0]);
-    }
-
-    for(int i = 0; i < 3; i++){
-        if(mat[i][0] == mat[i][1] && mat[i][1] == mat[i][2]){
-            return winner(mat[i][0]);
-        }
-    }
-    for(int i = 0; i < 3; i++){
-        if(mat[0][i] == mat[1][i] && mat[1][i] == mat[2][i]){
-            return winner(mat[0][i]);
-        }
-    }
-    return 0;
+void showLista(list<int> &lista){
+    cout << "[ ";
+    for(auto it = lista.begin();it!= lista.end();it++)
+        cout << *it << " ";
+    cout << "]\n";
 }
 
 int main(){
-    char mat[3][3];
-    char *p = &mat[0][0];
-    string play1, play2;
-    char move_game;
-    bool player = true;
-    for(int i = 0; i < 9; i++){
-        p[i] = i+'0';
-    }
-    show(mat);
-    cout << "player 1: ";
-    getline(cin, play1);
-    cout << "player 2: ";
-    getline(cin, play2);
-    cout << "Començando o jogo" << endl;
-    while(true){
-        if(player)
-            cout << play1 << ": ";
-        else
-            cout << play2 << ": ";
-        cin >> move_game;
-        int move = check_move(move_game, &mat[0][0], player);
-        if(move){
-            if(player)
-                player = false;
-            else
-                player = true;
+    vector<int> vetor;
+    set<int> conjunto;
+    list<int> lista;
+    int sucessosV = 0;
+    int sucessosC = 0;
+    int sucessosL = 0;
+    string OP;
+    while(cin >> OP){
+        if(OP == "Insert"){
+            int value;
+            cin >> value;
+            auto par = bsearchVetor(vetor,0,vetor.size(),value);
+            if(par.first != true){
+                vetor.insert(vetor.begin()+par.second,value);
+                sucessosV++;
+            }
+            else{
+                vetor.insert(vetor.begin()+par.second+1,value);
+                sucessosV++;
+            }
+            
+            auto par2 = bsearchList(lista,value);
+            lista.insert(par2.second,value);
+            sucessosL++;
+        
+            if(conjunto.find(value) == conjunto.end()){
+                conjunto.insert(value);
+                sucessosC++;
+            }
+
         }
-        show(mat);
-        int winner = check_out_winner(mat);
-        if(winner){
-            if(winner)
-                cout << "Vencedor: " << play1 << endl;
-            else
-                cout << "Vencedor: " << play2 << endl;
-           break; 
+
+        else if(OP == "Remove"){
+            int value;
+            cin >> value;
+            auto par = bsearchVetor(vetor,0,vetor.size(),value);
+            if(par.first == true){
+                vetor.erase(vetor.begin()+par.second);
+                sucessosV++;
+            }
+
+            auto par2 = bsearchList (lista,value);
+            if(lista.size() > 0 && par2.first == true){
+                lista.erase(par2.second);
+                sucessosL++;
+            }
+
+            if(conjunto.find(value) != conjunto.end()){
+                conjunto.erase(value);
+                sucessosC++;
+            }
         }
+
+        else if(OP == "Show"){
+            cout << "Vetor : ";
+            showVetor(vetor);
+            cout << "Lista : ";
+            showLista(lista);
+            cout << "Conjunto : ";
+            showConjunto(conjunto);
+        }
+
+        else if(OP == "Sucessos"){
+            cout << "Sucessos Vetor : " << sucessosV << endl;
+            cout << "Sucessos Lista : " << sucessosL << endl;
+            cout << "Sucessos Conjunto : " << sucessosC << endl;
+        }
+
+        else if(OP == "Exit")
+            break;   
     }
 }
