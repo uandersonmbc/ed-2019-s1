@@ -109,12 +109,12 @@
 ## 09 - Editor
 
 - O que você fez
-    - ...
+    - Comecei a fazer, mais não consergui competar todas as funcionalidades.
 - Com quem e como você fez
-    - ...
+    - Fiz sozinho com ajuda do seu código de exemplo.
 - O que aprendeu e sabe fazer
-    - ...
+    - 
 - O que tem dificuldade ainda
-    - ...
+    - Na complexidade desse algoritmo
 - Quanto tempo levou pra fazer a atividade
-    - ...
+    - 1 hora.
