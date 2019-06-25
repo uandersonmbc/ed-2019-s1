@@ -113,7 +113,7 @@
 - Com quem e como você fez
     - Fiz sozinho com ajuda do seu código de exemplo.
 - O que aprendeu e sabe fazer
-    - 
+    - ...
 - O que tem dificuldade ainda
     - Na complexidade desse algoritmo
 - Quanto tempo levou pra fazer a atividade
