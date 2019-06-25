@@ -42,34 +42,38 @@ public:
             return root;
         }
     }
-
-    /* you only have to complete the function given below.  
-Node is defined as  
-
+    /*The tree node has data, left child and right child 
 class Node {
-    public:
-        int data;
-        Node *left;
-        Node *right;
-        Node(int d) {
-            data = d;
-            left = NULL;
-            right = NULL;
-        }
+    int data;
+    Node* left;
+    Node* right;
 };
 
 */
-
-    void inOrder(Node *root)
+    int height(Node *root)
     {
         if (root == nullptr)
         {
-            return;
+            return 0;
+        }
+        if ((root->left == nullptr) && (root->right == nullptr))
+        {
+            return 0;
         }
 
-        inOrder(root->left);
-        cout << root->data << " ";
-        inOrder(root->right);
+        return 1 + topEdge(height(root->left), height(root->right));
+    }
+
+    int topEdge(int left, int right)
+    {
+        if (left > right)
+        {
+            return left;
+        }
+        else
+        {
+            return right;
+        }
     }
 
 }; //End of Solution
