@@ -109,7 +109,7 @@
 ## 09 - Editor
 
 - O que você fez
-    - Comecei a fazer, mais não consergui competar todas as funcionalidades.
+    - Comecei a fazer, mais não consergui completar todas as funcionalidades.
 - Com quem e como você fez
     - Fiz sozinho com ajuda do seu código de exemplo.
 - O que aprendeu e sabe fazer
@@ -118,3 +118,17 @@
     - Na complexidade desse algoritmo
 - Quanto tempo levou pra fazer a atividade
     - 1 hora.
+
+
+## 10 - Tree
+
+- O que você fez
+    - Fiz todos os exercícios fáceis do hackrank de árvores
+- Com quem e como você fez
+    - Fiz sozinho com ajuda do meu amigo Valdemir Junior
+- O que aprendeu e sabe fazer
+    - Me aprofundei mais em árvores
+- O que tem dificuldade ainda
+    - Agora ficou tudo claro
+- Quanto tempo levou pra fazer a atividade
+    - 1 dia.
