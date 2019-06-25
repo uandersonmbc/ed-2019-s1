@@ -109,7 +109,7 @@
 ## 09 - Editor
 
 - O que você fez
-    - Comecei a fazer, mais não consergui completar todas as funcionalidades.
+    - Comecei a fazer, mais não consegui completar todas as funcionalidades.
 - Com quem e como você fez
     - Fiz sozinho com ajuda do seu código de exemplo.
 - O que aprendeu e sabe fazer
